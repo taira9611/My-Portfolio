@@ -1,0 +1,557 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* 防止滾動條出現 */
+
+}
+
+#app {
+    width: 100vw;
+    /* 佔滿視窗寬度 */
+    height: 100vh;
+    /* 佔滿視窗高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+#app::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/index背景圖.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    /* 60% 透明度 */
+    z-index: -1;
+    /* 確保在內容下方 */
+}
+
+.header-bar {
+    width: 100%;
+    height: 120px;
+    /* 調整高度以匹配新設計，約為總高的1/10 */
+    /* background-color: rgba(0, 0, 0, 0.3);  */
+    /* 半透明黑色背景 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 讓內容水平置中 */
+    padding: 0 40px;
+    /* 左右內邊距 */
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+    /* 確保padding不會增加寬度 */
+}
+
+.header-title {
+    font-size: 4rem;
+    /* 增大字體 */
+    margin-left: 20px;
+    /* 標題左側間距 */
+    white-space: nowrap;
+    /* 防止標題換行 */
+    order: 1;
+}
+
+
+.back-button {
+    background-color: rgba(108, 163, 226, 0.7);
+    /* 藍色，帶透明度 */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    /* 圓角 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+    margin-right: 20px;
+    /* 按鈕與logo之間的間距 */
+}
+
+.back-button:hover {
+    background-color: rgba(90, 140, 200, 0.8);
+    transform: translateY(-2px);
+}
+
+.back-button:active {
+    background-color: rgba(70, 120, 180, 0.9);
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.header-right-section {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    /* 將右側區塊推到最右邊 */
+    order: 2;
+}
+
+.logo-container {
+    /* 預留給logo的容器 */
+    width: 100px;
+    /* 根據logo實際大小調整 */
+    height: 100px;
+    /* 根據logo實際大小調整 */
+    margin-right: 20px;
+    /* logo右側間距 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../img/個人logo.png');
+    background-size: contain;
+    /* 包含在容器內 */
+    background-position: center;
+    background-repeat: no-repeat;
+    order: 3;
+}
+
+.content-area {
+    flex-grow: 1;
+    /* 讓內容區域佔據剩餘空間 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 垂直居中按鈕 */
+    /* 背景圖片已經在#app上設定 */
+}
+
+.work-card {
+    width: 450px;
+    /* 每個作品區塊的寬度 */
+    height: 800px;
+    /* 每個作品區塊的高度 */
+    background-color: rgba(224, 224, 224, 0.9);
+    /* 模擬圖片中的淺灰色，帶有輕微透明度 */
+    border-radius: 10px;
+    /* 輕微圓角 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* 更明顯的陰影 */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* 防止內容溢出 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.work-card:hover {
+    transform: translateY(-10px);
+    /* 懸停時輕微上浮 */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    /* 懸停時陰影更深 */
+}
+
+.work-image-placeholder {
+    width: 100%;
+    height: 80%;
+    /* 圖片佔卡片高度的80% */
+    background-color: #d0d0d0;
+    /* 模擬圖片佔位符的顏色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #888;
+    border-bottom: 1px solid #ccc;
+    /* 圖片和文字區域之間的分隔線 */
+}
+
+.work-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 圖片填滿整個容器，可能會裁剪 */
+}
+
+.work-title-placeholder {
+    width: 100%;
+    height: 20%;
+    /* 標題佔卡片高度的20% */
+    background-color: #c0c0c0;
+    /* 模擬圖片中底部灰色條 */
+    display: flex;
+    flex-direction: column;
+    /* 讓內容垂直排列 */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #555;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.enter-button {
+    background-color: #4CAF50;
+    /* 綠色背景 */
+    color: white;
+    /* 白色文字 */
+    padding: 8px 16px;
+    /* 內邊距 */
+    border: none;
+    /* 無邊框 */
+    border-radius: 5px;
+    /* 圓角 */
+    cursor: pointer;
+    /* 鼠標懸停時顯示指針 */
+    font-size: 1rem;
+    margin-top: 10px;
+    /* 與上方文字的間距 */
+    transition: background-color 0.3s ease;
+}
+
+.enter-button:hover {
+    background-color: #45a049;
+    /* 懸停時顏色變深 */
+}
+
+.content-area-bigbox {
+    width: 90%;
+    /* 佔據 content-area 的大部分寬度 */
+    height: 80%;
+    /* 佔據 content-area 的大部分高度 */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* 白色，帶透明度 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    /* 讓內部的元素並排顯示 */
+    justify-content: space-around;
+    /* 讓內部的元素之間有間距 */
+    align-items: center;
+    /* 垂直居中內部的元素 */
+    padding: 20px;
+    /* 內部間距 */
+    box-sizing: border-box;
+    /* 確保 padding 不會增加尺寸 */
+}
+
+.content-area-bigbox-left {
+    width: 48%;
+    /* 佔據 content-area-bigbox 的近一半寬度 */
+    height: 95%;
+    /* 佔據 content-area-bigbox 的大部分高度 */
+    background-color: rgba(200, 200, 200, 0.7);
+    /* 淺灰色，帶透明度 */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #555;
+}
+
+
+.content-area-bigbox-right {
+    width: 48%;
+    /* 佔據 content-area-bigbox 的近一半寬度 */
+    height: 95%;
+    /* 佔據 content-area-bigbox 的大部分高度 */
+    background-color: rgba(200, 200, 200, 0.7);
+    /* 淺灰色，帶透明度 */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #555;
+}
+
+.work-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* 允許卡片換行 */
+    justify-content: center;
+    /* 水平居中卡片 */
+    align-items: center;
+    /* 垂直居中卡片 */
+    gap: 20px;
+    /* 卡片之間的間距 */
+    padding: 20px;
+    /* 容器內邊距 */
+    overflow-y: auto;
+    /* 內容溢出時顯示滾動條 */
+    width: 100%;
+    /* 佔滿父容器寬度 */
+    height: 100%;
+    /* 佔滿父容器高度 */
+    box-sizing: border-box;
+    /* 確保 padding 不會增加尺寸 */
+}
+
+/* RWD 調整 */
+@media (max-width: 1200px) {
+    .header-bar {
+        justify-content: space-between;
+    }
+
+    .header-title {
+        font-size: 3rem;
+        order: 1;
+    }
+
+    .logo-container {
+        width: 80px;
+        height: 80px;
+        order: 3;
+    }
+
+    .header-right-section {
+        order: 2;
+    }
+}
+
+    @media (max-width: 992px) {
+        .header-bar {
+            height: 100px;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            order: 1;
+        }
+
+        .logo-container {
+            width: 70px;
+            height: 70px;
+            order: 3;
+        }
+
+        .back-button {
+            padding: 8px 15px;
+            font-size: 1rem;
+        }
+
+        .header-right-section {
+            order: 2;
+        }
+
+        .work-card {
+            width: 300px;
+            height: 550px;
+        }
+
+        .work-image-placeholder {
+            height: 75%;
+        }
+
+        .work-title-placeholder {
+            height: 25%;
+            font-size: 1rem;
+        }
+
+        .enter-button {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        body,
+        html {
+            overflow-y: auto;
+            /* Allow vertical scrolling */
+        }
+
+        .header-bar {
+            flex-direction: row;
+            /* Change to horizontal */
+            justify-content: space-between;
+            /* Distribute items: button left, title middle, logo right */
+            align-items: center;
+            /* Vertically center items */
+            height: 80px;
+            padding: 5px 10px;
+        }
+
+        .header-title {
+            font-size: 1.8rem;
+            margin: 0;
+            /* Reset margins */
+            flex-grow: 1;
+            /* Allow title to take available space */
+            text-align: center;
+            /* Center the text within the title's flex item */
+        }
+
+        .logo-container {
+            width: 50px;
+            height: 50px;
+        }
+
+        .back-button {
+            padding: 6px 10px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            /* Reset margin */
+        }
+
+        .header-right-section {
+            /* Add this block for 576px */
+            width: auto;
+            /* Allow it to shrink to content size */
+            justify-content: flex-end;
+            /* Align logo to the right within its section */
+            /* margin-left: 0; */
+            /* Ensure no extra margin */
+        }
+
+        .content-area {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .work-card {
+            width: 80%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        .work-image-placeholder {
+            /* height: 150px; */
+            height: auto;
+        }
+
+        .work-title-placeholder {
+            height: auto;
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+
+        .enter-button {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .content-area-bigbox {
+            width: 98%;
+            padding: 5px;
+        }
+
+        .content-area-bigbox-left,
+        .content-area-bigbox-right {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .content-area-bigbox-right {
+            margin-top: 10px;
+        }
+
+    }
+
+    @media (max-width: 576px) {
+
+        body,
+        html {
+            overflow-y: auto;
+            /* Allow vertical scrolling */
+        }
+
+        .header-bar {
+            flex-direction: row;
+            /* Change to horizontal */
+            justify-content: space-between;
+            /* Distribute items: button left, title middle, logo right */
+            align-items: center;
+            /* Vertically center items */
+            height: 80px;
+            padding: 5px 10px;
+        }
+
+        .header-title {
+            font-size: 1.8rem;
+            margin: 0;
+            /* Reset margins */
+            flex-grow: 1;
+            /* Allow title to take available space */
+            text-align: center;
+            /* Center the text within the title's flex item */
+        }
+
+        .logo-container {
+            width: 50px;
+            height: 50px;
+        }
+
+        .back-button {
+            padding: 6px 10px;
+            font-size: 0.9rem;
+            margin-right: 0;
+            /* Reset margin */
+        }
+
+        .header-right-section {
+            /* Add this block for 576px */
+            width: auto;
+            /* Allow it to shrink to content size */
+            justify-content: flex-end;
+            /* Align logo to the right within its section */
+            margin-left: 0;
+            /* Ensure no extra margin */
+        }
+
+        .content-area {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .work-card {
+            width: 80%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        .work-image-placeholder {
+            /* height: 150px; */
+            height: auto;
+        }
+
+        .work-title-placeholder {
+            height: auto;
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+
+        .enter-button {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .content-area-bigbox {
+            width: 98%;
+            padding: 5px;
+        }
+
+        .content-area-bigbox-left,
+        .content-area-bigbox-right {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .content-area-bigbox-right {
+            margin-top: 10px;
+        }
+
+    }

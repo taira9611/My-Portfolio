@@ -1,0 +1,214 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* 防止滾動條出現 */
+    /* background-color: #f0f0f0; */
+    /* fallback background color */
+}
+
+#app {
+    width: 100vw;
+    /* 佔滿視窗寬度 */
+    height: 100vh;
+    /* 佔滿視窗高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+#app::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/index背景圖.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    /* 60% 透明度 */
+    z-index: -1;
+    /* 確保在內容下方 */
+}
+
+.header-bar {
+    width: 100%;
+    height: 120px;
+    /* 調整高度以匹配新設計，約為總高的1/10 */
+    /* background-color: rgba(0, 0, 0, 0.3);  */
+    /* 半透明黑色背景 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 讓標題和logo分開 */
+    padding: 0 40px;
+    /* 左右內邊距 */
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+    /* 確保padding不會增加寬度 */
+}
+
+.header-title {
+    font-size: 4rem;
+    /* 增大字體 */
+    margin-left: 20px;
+    /* 標題左側間距 */
+    white-space: nowrap;
+    /* 防止標題換行 */
+}
+
+.logo-container {
+    /* 預留給logo的容器 */
+    width: 100px;
+    /* 根據logo實際大小調整 */
+    height: 100px;
+    /* 根據logo實際大小調整 */
+    margin-left: auto; /* 將logo推到最右邊 */
+    margin-right: 20px; /* logo右側間距 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../img/個人logo.png');
+    background-size: contain;
+    /* 包含在容器內 */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content-area {
+    flex-grow: 1;
+    /* 讓內容區域佔據剩餘空間 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 垂直居中按鈕 */
+    /* 背景圖片已經在#app上設定 */
+}
+
+.enter-button {
+    background-color: rgba(57, 89, 177, 0.7);
+    /* 模擬圖片中帶有透明度的藍色 */
+    color: white;
+    font-weight: bold;
+    padding: 18px 60px;
+    /* 增大按鈕大小 */
+    font-size: 2.5rem;
+    /* 增大字體 */
+    border: none;
+    border-radius: 50px;
+    /* 圓角膠囊形狀 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* 添加陰影 */
+    font-family: '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+    /* 設定中文字體 */
+}
+
+.enter-button:hover {
+    background-color: rgba(90, 140, 200, 0.8);
+    /* 按鈕懸停效果 */
+    transform: translateY(-2px);
+    /* 輕微上浮效果 */
+}
+
+.enter-button:active {
+    background-color: rgba(70, 120, 180, 0.9);
+    /* 按鈕點擊效果 */
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+    .header-title {
+        font-size: 3.5rem;
+    }
+
+    .logo-container {
+        width: 90px;
+        height: 90px;
+    }
+
+    .enter-button {
+        padding: 15px 50px;
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-bar {
+        height: 100px;
+        padding: 0 30px;
+    }
+
+    .header-title {
+        font-size: 3rem;
+    }
+
+    .logo-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .enter-button {
+        padding: 12px 40px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .header-title {
+        font-size: 2.5rem;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .logo-container {
+        width: 70px;
+        height: 70px;
+        margin-right: 0;
+    }
+
+    .enter-button {
+        padding: 10px 30px;
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-bar {
+        height: 70px;
+        padding: 5px 10px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .header-title {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .logo-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .enter-button {
+        padding: 8px 25px;
+        font-size: 1.5rem;
+    }
+}
